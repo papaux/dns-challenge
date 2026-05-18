@@ -133,3 +133,4 @@ docker exec -ti kafka /bin/bash
 Vscode from the web has some different shortcuts
 
 - `F1` to open the command palette
+- It is possible to "split" the terminal panel to have two (right click => split)
