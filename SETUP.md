@@ -15,9 +15,12 @@
     ```
     git clone --depth 1 -b challenge https://github.com/papaux/dns-challenge.git
     ```
-5. Remove git link
+5. Remove git link and create an empty repo
     ```
     rm -rf .git
+    git init
+    git add .
+    git commit -m "Starting point"
     ```
 6. Install vscode
     ```
