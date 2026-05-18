@@ -20,7 +20,8 @@ ARG USERID=1111
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     iputils-ping \
-    && rm -rf /var/lib/apt/lists/*
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*k
 
 RUN useradd -u $USERID -m $USER
 USER $USER

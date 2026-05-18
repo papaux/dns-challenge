@@ -28,7 +28,7 @@ curl -i -X POST http://localhost:8080/dns-requests \
     "qname": "example.com",
     "qtype": "A",
     "clientIp": "192.168.1.10",
-    "serverIp": "8.8.8.8"
+    "serverIp": "8.8.8.8",
     "timestamp": "2026-05-18T12:34:56Z"
   }'
 ```
