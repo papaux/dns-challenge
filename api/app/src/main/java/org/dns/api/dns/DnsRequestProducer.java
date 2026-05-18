@@ -28,6 +28,7 @@ public class DnsRequestProducer {
         try {
             String payload = objectMapper.writeValueAsString(request);
             producer.send(new ProducerRecord<>(topic, request.qname(), payload));
+            producer.flush();
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Failed to serialize DnsRequest", e);
         }
