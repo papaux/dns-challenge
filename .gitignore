@@ -2,6 +2,7 @@
 build/
 out/
 *.class
+**/app/bin/*
 
 .idea/
 *.iml
