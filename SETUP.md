@@ -1,7 +1,4 @@
 # Challenge Setup
-TODO
-- add user to sudo
-- change port to 8081
 
 1. Get a Ubuntu VM
 2. Install tooling
