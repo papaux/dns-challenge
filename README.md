@@ -22,7 +22,7 @@ How it works:
             | POST /dns-requests  (JSON DnsRequest)
             v
       +-----+-----+
-      |    api    |  Spring Boot, port 8080
+      |    api    |  Spring Boot, port 8081
       +-----+-----+
             |
             | produce
@@ -66,7 +66,7 @@ The processor then consumes the topic, enriches each record, and
 writes the result to `dns-records-analytics`.
 
 ```
-curl -i -X POST http://localhost:8080/dns-requests \
+curl -i -X POST http://localhost:8081/dns-requests \
   -H 'Content-Type: application/json' \
   -d '{
     "qname": "example.com",
