@@ -1,5 +1,5 @@
 services:
-  broker:
+  kafka:
     image: apache/kafka:3.8.1
     container_name: kafka
     ports:
@@ -45,8 +45,7 @@ services:
     environment:
       KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
       KAFKA_INPUT_TOPIC: dns-records
-      KAFKA_OUTPUT_TOPIC: dns-records-processed
-
+      KAFKA_OUTPUT_TOPIC: dns-records-analytics
 
 volumes:
   kafka-data:

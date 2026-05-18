@@ -1,16 +1,27 @@
-FROM  registry.redhat.io/ubi9/openjdk-21:1.24-2.1778501191 AS builder
-ARG USER 185
+FROM eclipse-temurin:21-jdk AS builder
+ARG USER=dns
+ARG USERID=1111
+
+RUN useradd -u $USERID -m $USER
+USER ${USER}
 
 WORKDIR /app
 
 COPY --chown=$USER:$USER . .
 
-RUN ./gradlew clean build --no-daemon
+RUN --mount=type=cache,target=/home/${USER}/.gradle,uid=${USERID} \
+    ./gradlew clean build --no-daemon
 
-FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.24
+FROM eclipse-temurin:21-jre
+
+ARG USER=dns
+ARG USERID=1111
+
+RUN useradd -u $USERID -m $USER
+USER $USER
 
 WORKDIR /app
 
-COPY --from=builder /app/app/build/libs/*.jar app.jar
+COPY --from=builder --chown=${USER}:${USER} /app/app/build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
