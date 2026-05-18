@@ -127,3 +127,9 @@ docker exec -ti kafka /bin/bash
 
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic dns-records-analytics --from-beginning
 ```
+
+## Vscode web
+
+Vscode from the web has some different shortcuts
+
+- `F1` to open the command palette
