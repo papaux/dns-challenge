@@ -1,10 +1,54 @@
 # DNS Challenge
 
-Welcome to this wonderful application!
+Welcome to the DNS analytics application!
 
 It has been created to log and analyze DNS requests.
 
+How it works:
+- A DNS server sends DNS request logs to a REST API `POST /dns-requests`
+- The `api` app deserializes the data and writes it to Kafka in the topic `dns-records`
+- The `processor` app listens to the `dns-records` Kafka topic
+  - For each record received, it does some enrichment (extracting TLD, counting parts, ...)
+  - The output data is written to the `dns-record-analytics` Kafka topics
+- Any client can registers to the `dns-record-analytics` Kafka topic to receive record stats
+
 # Architecture Overview
+
+```
+      +-----------+
+      |  client   |
+      +-----+-----+
+            |
+            | POST /dns-requests  (JSON DnsRequest)
+            v
+      +-----+-----+
+      |    api    |  Spring Boot, port 8080
+      +-----+-----+
+            |
+            | produce
+            v
+ +==========+============+
+ |  topic: dns-records   |
+ +==========+============+
+            |
+            | consume
+            v
+      +-----+-----+
+      | processor |  enrich: TLD, parts, ...
+      +-----+-----+          
+            |
+            | produce
+            v
+ +==========+===================+
+ | topic: dns-records-analytics |
+ +==========+===================+
+            |
+            | consume (e.g. kafka-console-consumer)
+            v
+      +-----+-----+
+      |  reader   |
+      +-----------+
+```
 
 # Usage
 
@@ -14,7 +58,7 @@ It has been created to log and analyze DNS requests.
 docker compose up --build
 ```
 
-## Recording a DNS request
+## Record a DNS request
 
 The API exposes `POST /dns-requests` endpoints which serializes into JSON and publishes to `dns-records` Kafka topic. 
 
@@ -45,7 +89,6 @@ docker exec -ti kafka /bin/bash
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic dns-records-analytics --from-beginning
 ```
 
-
 # Developer Documentation
 
 ## Build
@@ -61,12 +104,19 @@ docker compose up kafka
 
 **Start the API**
 
-TODO
+```
+cd api
+./gradlew clean build
+./gradlew bootRun
+```
 
 **Start the Processor**
 
-TODO
-
+```
+cd processor
+./gradlew clean build
+./gradlew bootRun
+```
 
 ## Debugging
 
