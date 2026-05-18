@@ -98,6 +98,9 @@ public class DnsRecordsStreamer implements CommandLineRunner {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        // reduce timeouts for faster feedback during development
+        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "6000");
+        props.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, "2000");
         return props;
     }
 

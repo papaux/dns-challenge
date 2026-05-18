@@ -19,6 +19,7 @@ public class DnsEnricher {
 
         return new EnrichedDnsRequest(
                 Instant.now(),
+                request.timestamp(),
                 tld,
                 depth,
                 request.qtype(),
