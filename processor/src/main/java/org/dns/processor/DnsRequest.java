@@ -1,7 +1,5 @@
 package org.dns.processor;
 
-import java.time.Instant;
-
 /**
  * Represents a DNS request read from Kafka.
  */
@@ -10,5 +8,5 @@ public record DnsRequest(
         String qtype,
         String clientIp,
         String serverIp,
-        Instant timestamp) {
+        Long timestamp) {
 }

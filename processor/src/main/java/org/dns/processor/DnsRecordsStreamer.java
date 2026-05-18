@@ -85,9 +85,7 @@ public class DnsRecordsStreamer implements CommandLineRunner {
             EnrichedDnsRequest enriched = enricher.enrich(request);
             String payload = objectMapper.writeValueAsString(enriched);
             producer.send(new ProducerRecord<>(outputTopic, record.key(), payload));
-        } catch (Exception e) {
-            LOGGER.warn("Skipping record offset={} value={}", record.offset(), record.value(), e);
-        }
+        } catch (Exception e) {}
     }
 
     private Properties consumerProps() {
