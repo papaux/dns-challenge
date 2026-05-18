@@ -1,0 +1,13 @@
+.gradle
+build/
+out/
+*.class
+
+.idea/
+*.iml
+*.metals
+
+.vscode/
+
+.env
+
