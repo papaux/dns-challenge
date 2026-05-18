@@ -72,7 +72,6 @@ public class DnsRecordsStreamer implements CommandLineRunner {
                 for (ConsumerRecord<String, String> record : records) {
                     processRecord(record, producer);
                 }
-                consumer.commitSync();
             }
         } catch (Exception e) {
             LOGGER.error("DNS records streamer terminated unexpectedly", e);
