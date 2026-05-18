@@ -24,8 +24,10 @@
     curl -fsSL https://code-server.dev/install.sh | sh
     ```
 7. Configure (edit the password)
+    
+    `cat ~/.config/code-server/config.yaml`
+    
     ```
-    cat ~/.config/code-server/config.yaml 
     bind-addr: 0.0.0.0:8080
     auth: password
     password: <PASSWORD>
