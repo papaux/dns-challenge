@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public record EnrichedDnsRequest(
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")        
         Instant processingTime,
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
-        Instant timestamp,
         String tld,
         int depth,
         String qtype,
