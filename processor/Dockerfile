@@ -16,6 +16,11 @@ FROM eclipse-temurin:21-jre
 ARG USER=dns
 ARG USERID=1111
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN useradd -u $USERID -m $USER
 USER $USER
 

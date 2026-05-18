@@ -8,6 +8,12 @@ It has been created to log and analyze DNS requests.
 
 # Usage
 
+## Start the application with docker compose
+
+```
+docker compose up --build
+```
+
 ## Recording a DNS request
 
 The API exposes `POST /dns-requests` endpoints which serializes into JSON and publishes to `dns-records` Kafka topic. 
@@ -28,6 +34,17 @@ curl -i -X POST http://localhost:8080/dns-requests \
 ```
 
 A successful call returns `202 Accepted`.
+
+## Inspecting the output
+
+Listen to the Kafka topic `dns-records-analytics`:
+
+```
+docker exec -ti kafka /bin/bash
+
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic dns-records-analytics --from-beginning
+```
+
 
 # Developer Documentation
 

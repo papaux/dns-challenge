@@ -1,4 +1,4 @@
-package org.dns.api.kafka;
+package org.dns.api.dns;
 
 import java.util.Properties;
 

@@ -72,6 +72,7 @@ public class DnsRecordsStreamer implements CommandLineRunner {
                 for (ConsumerRecord<String, String> record : records) {
                     processRecord(record, producer);
                 }
+                consumer.commitSync();
             }
         } catch (Exception e) {
             LOGGER.error("DNS records streamer terminated unexpectedly", e);
@@ -95,6 +96,7 @@ public class DnsRecordsStreamer implements CommandLineRunner {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP_ID);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         return props;
     }
