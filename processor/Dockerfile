@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY --chown=$USER:$USER . .
 
-RUN ./gradlew clean build --no-daemon
+RUN ./gradlew :processor:bootJar --no-daemon
 
 FROM eclipse-temurin:21-jre
 
@@ -27,6 +27,6 @@ USER $USER
 
 WORKDIR /app
 
-COPY --from=builder --chown=${USER}:${USER} /app/app/build/libs/*.jar app.jar
+COPY --from=builder --chown=${USER}:${USER} /app/processor/build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

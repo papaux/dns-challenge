@@ -111,17 +111,24 @@ docker compose up kafka
 **Start the API**
 
 ```
-cd api
-./gradlew clean build
-./gradlew bootRun
+./gradlew :api:bootRun
 ```
+
 
 **Start the Processor**
 
 ```
-cd processor
-./gradlew clean build
-./gradlew bootRun
+./gradlew :processor:bootRun
+```
+
+**Auto reload**
+
+For auto-reload on file changes, run Gradle in continuous-compile mode in a
+second terminal — devtools restarts the context as soon as the class files
+on disk change:
+
+```
+./gradlew -t classes
 ```
 
 ## Debugging

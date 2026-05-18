@@ -1,0 +1,12 @@
+[versions]
+spring-boot = "3.4.0"
+spring-dependency-management = "1.1.6"
+kafka = "3.8.1"
+junit = "4.13.2"
+
+[libraries]
+junit = { module = "junit:junit", version.ref = "junit" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }

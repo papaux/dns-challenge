@@ -10,7 +10,7 @@ WORKDIR /app
 COPY --chown=$USER:$USER . .
 
 RUN --mount=type=cache,target=/home/${USER}/.gradle,uid=${USERID} \
-    ./gradlew clean build --no-daemon
+    ./gradlew :api:bootJar --no-daemon
 
 FROM eclipse-temurin:21-jre
 
@@ -21,13 +21,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     iputils-ping \
     netcat-openbsd \
-    && rm -rf /var/lib/apt/lists/*k
+    && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -u $USERID -m $USER
 USER $USER
 
 WORKDIR /app
 
-COPY --from=builder --chown=${USER}:${USER} /app/app/build/libs/*.jar app.jar
+COPY --from=builder --chown=${USER}:${USER} /app/api/build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

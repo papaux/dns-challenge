@@ -2,13 +2,12 @@
 build/
 out/
 *.class
-**/app/bin/*
+processor/bin/*
+api/bin/*
 
 .idea/
 *.iml
 *.metals
-
-.vscode/
 
 .env
 

@@ -21,8 +21,9 @@ services:
       - kafka-data:/var/lib/kafka/data
 
   api:
-    build: 
-      context: ./api
+    build:
+      context: .
+      dockerfile: api/Dockerfile
     container_name: api
     ports:
       - "8081:8081"
@@ -35,8 +36,9 @@ services:
       KAFKA_OUTPUT_TOPIC: dns-records
   
   processor:
-    build: 
-      context: ./processor
+    build:
+      context: .
+      dockerfile: processor/Dockerfile
     container_name: processor
     depends_on:
       - kafka
