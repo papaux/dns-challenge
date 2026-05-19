@@ -98,6 +98,11 @@ docker exec -ti kafka /bin/bash
 
 ## Build
 
+```
+./gradlew :api:bootJar
+./gradlew :processor:bootJar
+```
+
 ## Run locally
 
 These instructions allow to run each component independently, which is recommended when doing development or debugging.
