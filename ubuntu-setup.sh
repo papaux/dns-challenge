@@ -8,7 +8,7 @@ read -s -p "Enter code-server password: " CS_PASSWORD
 # Install docker and helper packages
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh ./get-docker.sh
-sudo apt install -y tmux vim zsh openjdk-21-jdk
+sudo apt install -y tmux vim zsh openjdk-21-jdk kafkacat
 echo "127.0.0.1 kafka" | sudo tee -a /etc/hosts
 sudo gpasswd -a $USER docker
 
@@ -22,6 +22,7 @@ git add .
 git commit -m "Starting point for DNS challenge"
 
 sudo docker compose build
+sudo docker compose pull
 
 mkdir -p ~/.config/code-server
 cat > ~/.config/code-server/config.yaml << EOF
