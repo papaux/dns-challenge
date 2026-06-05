@@ -41,9 +41,22 @@
     code-server /home/cloud_user/dns-challenge/
     ```
 9. Connect and install extensions
-   1.  Java
+   1. Java
+   2. Gradle
 10. Run the docker images once
     ```
     docker compose up --build
     ```
 
+## All in one script
+
+1. Connect to the machine with SSH
+2. Create a script and copy the content of `ubuntu-setup.sh`
+```
+vim ubuntu-setup.sh
+chmod +x ubuntu-setup.sh
+```
+3. Run the script
+```
+./ubuntu-setup.sh
+```

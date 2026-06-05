@@ -13,7 +13,6 @@ sudo sh ./get-docker.sh
 sudo apt install -y tmux vim zsh openjdk-21-jdk
 echo "127.0.0.1 kafka" | sudo tee -a /etc/hosts
 sudo gpasswd -a $USER docker
-newgrp docker
 
 git clone --depth 1 -b challenge https://$GITHUB_USER:$GITHUB_TOKEN@github.com/papaux/dns-challenge.git
 
@@ -38,3 +37,5 @@ EOF
 code-server /home/$USER/dns-challenge &
 
 echo "Setup complete!"
+
+rm -rf $HOME/ubuntu-setup.sh
