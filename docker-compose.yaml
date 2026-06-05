@@ -46,7 +46,7 @@ services:
     command: ["./gradlew", "bootRun"]
     environment:
       KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
-      KAFKA_INPUT_TOPIC: dns-record
+      KAFKA_INPUT_TOPIC: dns-records
       KAFKA_OUTPUT_TOPIC: dns-records-analytics
 
 volumes:
