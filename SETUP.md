@@ -51,12 +51,14 @@
 ## All in one script
 
 1. Connect to the machine with SSH
-2. Create a script and copy the content of `ubuntu-setup.sh`
+2. Clone this repo with
 ```
-vim ubuntu-setup.sh
-chmod +x ubuntu-setup.sh
+ export GITHUB_USER=
+ export GITHUB_TOKEN=
+git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/papaux/dns-challenge.git
+cd dns-challenge
 ```
-3. Run the script
+3. Run the setup script
 ```
 ./ubuntu-setup.sh
 ```

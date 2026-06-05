@@ -3,8 +3,6 @@
 # Setup interview challenge environment on Ubuntu
 
 # Input for github password
-read -sp "Enter your GitHub User: " GITHUB_USER
-read -sp "Enter your GitHub Token: " GITHUB_TOKEN
 read -s -p "Enter code-server password: " CS_PASSWORD
 
 # Install docker and helper packages
@@ -14,17 +12,16 @@ sudo apt install -y tmux vim zsh openjdk-21-jdk
 echo "127.0.0.1 kafka" | sudo tee -a /etc/hosts
 sudo gpasswd -a $USER docker
 
-git clone --depth 1 -b challenge https://$GITHUB_USER:$GITHUB_TOKEN@github.com/papaux/dns-challenge.git
-
-cd dns-challenge
+# Setup the challenge repository and clean
+git config --global user.email "challenge@example.com"
+git config --global user.name "DNS Challenge"
+git checkout challenge
 rm -rf .git
 git init
 git add .
 git commit -m "Starting point for DNS challenge"
 
-docker compose build
-
-curl -fsSL https://code-server.dev/install.sh | sh
+sudo docker compose build
 
 mkdir -p ~/.config/code-server
 cat > ~/.config/code-server/config.yaml << EOF
@@ -34,8 +31,12 @@ password: $CS_PASSWORD
 cert: false
 EOF
 
-code-server /home/$USER/dns-challenge &
+curl -fsSL https://code-server.dev/install.sh | sh
+
+# install extensions
+code-server --install-extension redhat.java
+code-server --install-extension vscjava.vscode-gradle
+
+sudo systemctl enable --now code-server@$USER
 
 echo "Setup complete!"
-
-rm -rf $HOME/ubuntu-setup.sh
