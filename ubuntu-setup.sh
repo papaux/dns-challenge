@@ -37,6 +37,7 @@ curl -fsSL https://code-server.dev/install.sh | sh
 # install extensions
 code-server --install-extension redhat.java
 code-server --install-extension vscjava.vscode-gradle
+code-server --install-extension vscjava.vscode-java-debug
 
 sudo systemctl enable --now code-server@$USER
 
