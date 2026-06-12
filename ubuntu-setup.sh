@@ -26,10 +26,10 @@ sudo docker compose pull
 
 mkdir -p ~/.config/code-server
 cat > ~/.config/code-server/config.yaml << EOF
-bind-addr: 0.0.0.0:8080
+bind-addr: 0.0.0.0:8443
 auth: password
 password: $CS_PASSWORD
-cert: false
+cert: true
 EOF
 
 curl -fsSL https://code-server.dev/install.sh | sh
