@@ -55,7 +55,7 @@
 ```
  export GITHUB_USER=
  export GITHUB_TOKEN=
-git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/papaux/dns-challenge.git
+ git clone https://$GITHUB_USER:$GITHUB_TOKEN@github.com/papaux/dns-challenge.git
 cd dns-challenge
 ```
 3. Run the setup script
