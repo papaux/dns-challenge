@@ -29,7 +29,7 @@ cat > ~/.config/code-server/config.yaml << EOF
 bind-addr: 0.0.0.0:8443
 auth: password
 password: $CS_PASSWORD
-cert: true
+cert: false
 EOF
 
 curl -fsSL https://code-server.dev/install.sh | sh
